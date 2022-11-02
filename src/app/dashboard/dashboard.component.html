@@ -1,0 +1,157 @@
+<div class="columns px-4 pt-6 has-background-light">
+  <app-sidenav></app-sidenav>
+  <div class="column pt-2">
+    <app-profile></app-profile>
+    <br />
+    <div class="is-flex is-justify-content-end mt-3">
+      <div class="columns is-centered">
+        <div class="column is-fullwidth">
+          <div class="card is-fullwidth has-background-link has-text-white">
+            <div class="card-content is-flex">
+              <div class="px-3 pr-6">
+                <i class="is-size-1 mdi mdi-book-plus-outline"></i>
+              </div>
+              <div>
+                <p class="title has-text-white">0</p>
+                <p class="subtitle has-text-white is-size-7">
+                  Rapports d'activites
+                </p>
+              </div>
+            </div>
+            <footer class="card-footer px-3 py-3 is-size-7">
+              <span>
+                Statistique des rapports | <i class="has-text-warning">Aout</i>
+              </span>
+            </footer>
+          </div>
+        </div>
+
+        <div class="column is-fullwidth">
+          <div class="card is-fullwidth has-background-link has-text-white">
+            <div class="card-content is-flex">
+              <div class="px-3 pr-6">
+                <i class="is-size-1 mdi mdi-book-plus-outline"></i>
+              </div>
+              <div>
+                <p class="title has-text-white">0</p>
+                <p class="subtitle has-text-white is-size-7">
+                  Rapports d'activites
+                </p>
+              </div>
+            </div>
+            <footer class="card-footer px-3 py-3 is-size-7">
+              <span>
+                Statistique des rapports |
+                <i class="has-text-warning">Septembre</i>
+              </span>
+            </footer>
+          </div>
+        </div>
+
+        <div class="column is-fullwidth">
+          <div class="card is-fullwidth has-background-link has-text-white">
+            <div class="card-content is-flex">
+              <div class="px-3 pr-6">
+                <i class="is-size-1 mdi mdi-book-plus-outline"></i>
+              </div>
+              <div>
+                <p class="title has-text-white">13</p>
+                <p class="subtitle has-text-white is-size-7">
+                  Rapports d'activites
+                </p>
+              </div>
+            </div>
+            <footer class="card-footer px-3 py-3 is-size-7">
+              <span>
+                Statistique des rapports |
+                <i class="has-text-warning">Octobre</i>
+              </span>
+            </footer>
+          </div>
+        </div>
+
+        <div class="column is-fullwidth">
+          <div class="card is-fullwidth has-background-link has-text-white">
+            <div class="card-content is-flex">
+              <div class="px-3 pr-6">
+                <i class="is-size-1 mdi mdi-book-plus-outline"></i>
+              </div>
+              <div>
+                <p class="title has-text-white">2</p>
+                <p class="subtitle has-text-white is-size-7">
+                  Rapports d'activites
+                </p>
+              </div>
+            </div>
+            <footer class="card-footer px-3 py-3 is-size-7">
+              <span>
+                Statistique des rapports |
+                <i class="has-text-warning">Novembre</i>
+              </span>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="hero box p-0 my-4">
+      <div class="hero-body p-4">
+        <p class="title is-size-6">Rapports publiées récemments</p>
+        <p class="subtitle is-size-7 has-text-link">sur 7 jours</p>
+      </div>
+    </section>
+
+    <div class="box">
+      <div class="table-container">
+        <table
+          class="table is-striped is-narrow is-hoverable is-fullwidth"
+        >
+          <thead class="is-size-7">
+            <tr>
+              <td>#ID</td>
+              <td>#TITRE</td>
+              <td>#COMMENTAIRE</td>
+              <td>#DATE PUBLICATION</td>
+              <td>#PIECE JOINTE</td>
+              <td>#EDITER</td>
+              <td>#SUPPRIMER</td>
+            </tr>
+          </thead>
+
+
+          <tbody class="is-size-7">
+            <tr *ngFor="let rapport of listRapport; let index = index">
+              <td class="py-4">{{ rapport.IDRAPPORT }}</td>
+              <td class="py-4">{{ rapport.Titre }}</td>
+              <td class="py-4">{{ rapport.Commentaire }}</td>
+              <td class="py-4">{{ rapport.Date_creation }}</td>
+               <td class="py-4">
+                <button
+                  class="button is-small is-link p-2"
+                  (click)="redirect(true, false, rapport.IDRAPPORT)"
+                >
+                  <i class="mdi mdi-eye has-text-white pr-2"></i> Consulter
+                </button>
+              </td>
+              <td class="py-4">
+                <button
+                  class="button is-small is-link p-2"
+                  (click)="redirect(false, true, rapport.IDRAPPORT)"
+                >
+                  <i class="mdi mdi-draw has-text-white pr-2"></i> Editer
+                </button>
+              </td>
+              <td class="py-4">
+                <button
+                  class="button is-small is-danger p-2"
+                  (click)="detete(rapport.IDRAPPORT)"
+                >
+                  <i class="mdi mdi-delete has-text-white pr-2"></i> Supprimer
+                </button>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

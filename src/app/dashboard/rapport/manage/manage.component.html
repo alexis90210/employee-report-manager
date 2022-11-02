@@ -1,0 +1,99 @@
+<div class="columns px-4 pt-6 has-background-light">
+  <app-sidenav></app-sidenav>
+  <div class="column pt-2">
+    <app-profile></app-profile>
+    <br />
+
+    <p style="cursor: pointer;" onclick="window.history.back()">
+        <i class="mdi mdi-keyboard-return is-size-5"></i>
+    </p>
+
+    <section class="hero box p-0 my-4">
+      <div class="p-4" *ngIf="reference.length > 0">
+        <p class="title is-size-6">{{ currentRapport.Titre }}</p>
+        <p class="subtitle is-size-7 has-text-link">
+          Publié le : {{ currentRapport.Date_creation }}
+        </p>
+      </div>
+      <div class="p-4" *ngIf="reference.length == 0">
+        <p class="title is-size-6">Nouveau rapport</p>
+        <p class="subtitle is-size-7 has-text-link">
+          Pour Aujourd'hui <span class="has-text-dark"> ( {{ date }} )</span>
+        </p>
+      </div>
+    </section>
+
+    <div class="columns">
+      <div class="column">
+        <div class="field mt-4">
+          <p class="control has-icons-left has-icons-right">
+            <input
+              class="input is-fullwidth"
+              type="text"
+              placeholder="Titre"
+              [(ngModel)]="rapport.Titre"
+            />
+            <span class="icon is-small is-left">
+              <i class="mdi mdi-tag"></i>
+            </span>
+          </p>
+        </div>
+
+        <div class="field mt-4">
+          <textarea
+            class="textarea is-fullwidth"
+            placeholder="Commentez le rapport"
+            maxlength="120"
+            [(ngModel)]="rapport.Commentaire"
+          ></textarea>
+        </div>
+
+        <div class="field mt-4">
+          <div class="file is-boxed">
+            <label class="file-label">
+              <input
+                class="file-input"
+                type="file"
+                name="resume"
+                (change)="onFileSelected($event)"
+                accept=".pdf"
+              />
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="mdi mdi-upload is-size-5"></i>
+                </span>
+                <span class="file-label"> Joindre mon rapport (.pdf)</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <p
+          class="box p-2 has-background-success-dark has-text-white is-size-7"
+          *ngIf="myRapportName.length > 0"
+        >
+          selected : {{ myRapportName }}
+        </p>
+
+        <div class="field mt-5 mb-6" *ngIf="reference.length > 0">
+          <button class="button is-warning p-2 m-1 mr-3">
+            <i class="mdi mdi-printer has-text-white pr-2"></i> Visualiser
+            mon rapport
+          </button>
+
+          <button class="button is-link p-2 m-1 mr-3" (click)="submitRapport()">
+            <i class="mdi mdi-content-save has-text-white pr-2"></i> Modifier
+            mon rapport
+          </button>
+        </div>
+
+        <div class="field mt-5 mb-6" *ngIf="reference.length == 0">
+          <button class="button is-link p-2" (click)="submitRapport()">
+            <i class="mdi mdi-content-save has-text-white pr-2"></i> Enregistrer
+            mon rapport
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

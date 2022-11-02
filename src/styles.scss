@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+
+.h-flexible {
+  height: 100vh;
+  max-height: auto;
+}
+
+.pt-20vh {
+  padding-top: 10vh;
+}
+
+.is-bolder {
+  font-weight: 600;
+}
+.panel-block:hover {
+  background-color: rgba(181, 182, 185, 0.094) !important;
+}
+
+.is-link-primary {
+  color: rgb(73,95,199) !important;
+}
