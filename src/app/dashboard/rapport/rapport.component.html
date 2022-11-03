@@ -25,7 +25,7 @@
     <div class="box">
       <div class="table-container">
         <table class="table is-striped is-narrow is-hoverable is-fullwidth">
-          <thead class="is-size-7">
+          <thead class="is-size-7" *ngIf="RapportToDay.length> 0">
             <tr>
               <td>#ID</td>
               <td>#TITRE</td>
@@ -37,16 +37,16 @@
             </tr>
           </thead>
 
-          <tbody class="is-size-7" *ngIf="RapportToDay.Commentaire">
-            <tr>
-              <td class="py-4">{{ RapportToDay.IDRAPPORT }}</td>
-              <td class="py-4">{{ RapportToDay.Titre }}</td>
-              <td class="py-4">{{ RapportToDay.Commentaire }}</td>
-              <td class="py-4">{{ RapportToDay.Date_creation }}</td>
+          <tbody class="is-size-7" *ngIf="RapportToDay.length> 0 else empty">
+            <tr *ngFor="let rapport of RapportToDay; let index = index ">
+              <td class="py-4">{{ rapport.IDRAPPORT }}</td>
+              <td class="py-4">{{ rapport.Titre }}</td>
+              <td class="py-4">{{ rapport.Commentaire }}</td>
+              <td class="py-4">{{ rapport.Date_creation }}</td>
                <td class="py-4">
                 <button
                   class="button is-small is-link p-2"
-                  (click)="redirect(true, false, RapportToDay.IDRAPPORT)"
+                  (click)="redirect(true, false, rapport.IDRAPPORT)"
                 >
                   <i class="mdi mdi-eye has-text-white pr-2"></i> Consulter
                 </button>
@@ -54,20 +54,31 @@
               <td class="py-4">
                 <button
                   class="button is-small is-link p-2"
-                  (click)="redirect(false, true, RapportToDay.IDRAPPORT)"
+                  (click)="redirect(false, true, rapport.IDRAPPORT)"
                 >
                   <i class="mdi mdi-draw has-text-white pr-2"></i> Editer
                 </button>
               </td>
               <td class="py-4">
                 <button
-                  class="button is-small is-danger p-2"
-                  (click)="detete(RapportToDay.IDRAPPORT)"
+                  class="button is-small is-danger  localForage.setItem('preview', {
+                    read:read,
+                    edit:edit,
+                    id:id
+                  }) p-2"
+                  (click)="detete(rapport.IDRAPPORT)"
                 >
                   <i class="mdi mdi-delete has-text-white pr-2"></i> Supprimer
                 </button>
             </tr>
           </tbody>
+
+          <ng-template #empty>
+            <div class="py-5">
+              <img src="../../../assets/empty.svg" width="120px" alt="" srcset="">
+              <p class="subtitle is-size-7 has-text-dark pt-2">Vous n'avez pas encore soumit votre rapport aujourd'hui</p>
+            </div>
+           </ng-template>
         </table>
       </div>
     </div>

@@ -1,3 +1,4 @@
+<app-is-loading [isLoading]="isLoading"></app-is-loading>
 <div class="columns px-4 pt-6 has-background-light">
   <app-sidenav></app-sidenav>
   <div class="column pt-2">
@@ -25,11 +26,21 @@
 
     <div class="columns">
       <div class="column">
+
+        <div class="my-3 notification is-danger" *ngIf="raiseErrorLogin">
+          {{raiseErrorLogin}}, veuillez ressayer !         
+        </div>
+
+        <div class="my-3 notification is-success" *ngIf="raiseSuccessLogin">
+          {{raiseSuccessLogin}}        
+        </div>
+
         <div class="field mt-4">
           <p class="control has-icons-left has-icons-right">
             <input
               class="input is-fullwidth"
               type="text"
+              maxlength="50"
               placeholder="Titre"
               [(ngModel)]="rapport.Titre"
             />
@@ -48,7 +59,7 @@
           ></textarea>
         </div>
 
-        <div class="field mt-4">
+        <div class="field mt-4" *ngIf="!read">
           <div class="file is-boxed">
             <label class="file-label">
               <input
@@ -75,13 +86,13 @@
           selected : {{ myRapportName }}
         </p>
 
-        <div class="field mt-5 mb-6" *ngIf="reference.length > 0">
-          <button class="button is-warning p-2 m-1 mr-3">
+        <div class="field mt-5 mb-6" >
+          <button  *ngIf="read" class="button is-warning p-2 m-1 mr-3" (click)="openRapport()">
             <i class="mdi mdi-printer has-text-white pr-2"></i> Visualiser
             mon rapport
           </button>
 
-          <button class="button is-link p-2 m-1 mr-3" (click)="submitRapport()">
+          <button *ngIf="edit" class="button is-link p-2 m-1 mr-3" (click)="submitModifRapport()">
             <i class="mdi mdi-content-save has-text-white pr-2"></i> Modifier
             mon rapport
           </button>
